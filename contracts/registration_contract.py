@@ -24,11 +24,11 @@ def register_user(address: str, user_info: dict):
 
     return receipt    
 
-def register_property_manager(address: str, property_manager_info: dict):
-    data = convertDataToJSON(property_manager_info)
-    property_manager_URI = pinJSONtoIPFS(data)
+def register_property_management(address: str, property_management_info: dict):
+    data = convertDataToJSON(property_management_info)
+    property_management_URI = pinJSONtoIPFS(data)
 
-    tx_hash = RegistrationContract.functions.registerPropertyManagement(address, property_manager_URI).transact({
+    tx_hash = RegistrationContract.functions.registerPropertyManagement(address, property_management_URI).transact({
         "from": w3.eth.accounts[0]
     })
     receipt = w3.eth.waitForTransactionReipt(tx_hash)
