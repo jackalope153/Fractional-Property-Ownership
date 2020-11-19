@@ -11,7 +11,7 @@ def register_property(user_id: int, property_info: dict):
     })
     receipt = w3.eth.waitForTransactionReipt(tx_hash)
 
-    return receipt    
+    return receipt
 
 def register_user(address: str, user_info: dict):
     data = convertDataToJSON(user_info)
@@ -34,3 +34,4 @@ def register_property_management(address: str, property_management_info: dict):
     receipt = w3.eth.waitForTransactionReipt(tx_hash)
 
     return receipt            
+    
