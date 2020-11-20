@@ -47,6 +47,8 @@ contract Registration {
     
     event RegisterProperty(uint propertyID, uint userID);
     
+    event RegisterUser(uint userID);
+    
     constructor() public { }
     
     function registerProperty(uint userId, string memory propertyURI) public returns(uint) {
@@ -66,7 +68,7 @@ contract Registration {
         uint userID = UserIDS.current();
         Users[userID] = User(userAddress, userURI);
         
-        emit RegisterProperty(propertyID, userId);
+        emit RegisterUser(userId);
         
         return userID;
     }
