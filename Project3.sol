@@ -47,16 +47,18 @@ contract Registration {
     
     event RegisterProperty(uint propertyID, uint userID);
     
+    event RegisterUser(uint userID);
+    
     constructor() public { }
     
-    function registerProperty(uint userId, string memory propertyURI) public returns(uint) {
+    function registerProperty(uint userID, string memory propertyURI) public returns(uint) {
         PropertyIDS.increment();
         uint propertyID = PropertyIDS.current();
-        Properties[propertyID] = Property(userId, propertyURI);
+        Properties[propertyID] = Property(userID, propertyURI);
         
         //
         
-        emit RegisterProperty(propertyID, userId);
+        emit RegisterProperty(propertyID, userID);
         
         return propertyID;
     }
@@ -65,6 +67,9 @@ contract Registration {
         UserIDS.increment();
         uint userID = UserIDS.current();
         Users[userID] = User(userAddress, userURI);
+        
+        emit RegisterUser(userID);
+        
         return userID;
     }
     
