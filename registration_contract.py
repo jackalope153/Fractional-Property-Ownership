@@ -1,6 +1,6 @@
 from base_contract import *
 
-RegistrationContract = initContract("./contracts/registration_contract_abi.json", "REGISTRATION_CONTRACT_ADDRESS")
+RegistrationContract = initContract(os.getenv('REGISTRATION_CONTRACT_ADDRESS'), "./contracts/registration_contract_abi.json")
 
 def register_user(user_info: dict):    
     wallet = user_info['wallet']        
