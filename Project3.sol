@@ -65,6 +65,9 @@ contract Registration {
         UserIDS.increment();
         uint userID = UserIDS.current();
         Users[userID] = User(userAddress, userURI);
+        
+        emit RegisterProperty(propertyID, userId);
+        
         return userID;
     }
     
