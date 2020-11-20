@@ -47,4 +47,9 @@ def register_property_management(property_management_info: dict):
     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
 
     return receipt            
-    
+
+# def buy_token(from_address: str, to_address:str, tokens_to_purchase:int):
+    # pass
+
+# def get_balance(address):
+    # pass

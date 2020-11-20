@@ -85,6 +85,7 @@ if __name__ == '__main__':
     # Investor 1 buys tokens for property
     # --------------------------------------------------------------------------
 
+    # buy_token(from: 'address', to: 'address', amt_of_token:0)
 
     # --------------------------------------------------------------------------
     # Investor 2 buys tokens for property
