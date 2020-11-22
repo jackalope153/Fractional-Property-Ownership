@@ -21,7 +21,8 @@ def register_property(property_info: dict):
     data = convertDataToJSON(property_info)
     property_URI = pinJSONtoIPFS(data)
     
-    tx_hash = RegistrationContract.functions.registerProperty(owner_wallet, property_URI).transact({
+    # tx_hash = RegistrationContract.functions.registerProperty(owner_wallet, property_URI).transact({
+    tx_hash = RegistrationContract.functions.registerProperty(1, property_URI).transact({
         "from": w3.eth.accounts[0]
     })
     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
@@ -33,7 +34,7 @@ def register_property(property_info: dict):
     # output = f"userID: {processed_receipt[0].args.userID}"
     # print(output)
 
-    return receipt
+    return property_URI
 
 def register_property_management(property_management_info: dict):
     wallet = property_management_info['wallet'] 
@@ -46,10 +47,4 @@ def register_property_management(property_management_info: dict):
     })
     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
 
-    return receipt            
-
-# def buy_token(from_address: str, to_address:str, tokens_to_purchase:int):
-    # pass
-
-# def get_balance(address):
-    # pass
+    return receipt              

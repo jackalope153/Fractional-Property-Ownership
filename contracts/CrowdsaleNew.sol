@@ -23,8 +23,10 @@ contract PropertyCrowdsale is Crowdsale, MintedCrowdsale, CappedCrowdsale, Timed
         public
     {
     }
-    
-    
+
+    // function pay_rent(address _receiver, uint amount) public payable {
+    //     _receiver.transfer(amount);
+    // }
 }
 
 

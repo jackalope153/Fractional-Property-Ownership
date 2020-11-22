@@ -47,3 +47,25 @@ def pinJSONtoIPFS(json):
     # print(r.json())
     ipfs_hash = r.json()["IpfsHash"]
     return f"ipfs://{ipfs_hash}"
+
+def pinFiletoIPFS(json):
+    pinata_api_key = os.getenv("PINATA_API_KEY")
+
+    if (pinata_api_key.find(";") > -1 or pinata_api_key.find(";") > -1):
+        pinata_api_key = pinata_api_key.replace(";", "").replace("'", "")
+
+    pinata_secret_api_key = os.getenv("PINATA_SECRET_API_KEY")
+
+    if (pinata_secret_api_key.find(";") > -1 or pinata_secret_api_key.find(";") > -1):
+        pinata_secret_api_key = pinata_secret_api_key.replace(";", "").replace("'", "")
+
+    headers = {
+        "Content-Type": "application/json",
+        "pinata_api_key": pinata_api_key,
+        "pinata_secret_api_key": pinata_secret_api_key
+    }
+
+    r = requests.post("https://api.pinata.cloud/pinning/pinFileToIPFS", data=json, headers=headers)
+    # print(r.json())
+    ipfs_hash = r.json()["IpfsHash"]
+    return f"ipfs://{ipfs_hash}"    
