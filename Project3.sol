@@ -51,7 +51,7 @@ contract Registration {
     
     constructor() public { }
     
-    function registerProperty(uint userID, string memory propertyURI) public returns(uint) {
+    function registerProperty(address user_address, string memory propertyURI) public returns(uint) {
         PropertyIDS.increment();
         uint propertyID = PropertyIDS.current();
         Properties[propertyID] = Property(userID, propertyURI);
