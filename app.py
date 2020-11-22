@@ -79,8 +79,7 @@ if __name__ == '__main__':
     property_state = input("Please enter the property's state: ")    
     property_zip_code = input("Please enter the property's zip code: ")
     property_price = input("Please enter the property's selling price: ")   
-    owner_wallet = '0xbbf10C469a018a662A2e39632E1F9B09486AA2f2'
-
+    
     property_URI = register_property(
         property_info={
             "owner_wallet": owner_wallet, 
