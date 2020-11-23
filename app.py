@@ -100,17 +100,17 @@ if __name__ == '__main__':
     # --------------------------------------------------------------------------
     # Investor 1 buys tokens for property
     # --------------------------------------------------------------------------
-    amount_of_tokens = input("Please enter the number of tokens you would like to purchase: ")   
+    investor1_tokens = input("Please enter the number of tokens you would like to purchase: ")   
 
-    buyTokens(address=investor1_wallet, amount=int(amount_of_tokens))
+    buyTokens(address=investor1_wallet, amount=int(investor1_tokens))
 
     # --------------------------------------------------------------------------
     # Investor 2 buys tokens for property
     # --------------------------------------------------------------------------
 
-    amount_of_tokens = input("Please enter the number of tokens you would like to purchase: ")   
+    investor2_tokens = input("Please enter the number of tokens you would like to purchase: ")   
 
-    buyTokens(address=investor2_wallet, amount=int(amount_of_tokens))
+    buyTokens(address=investor2_wallet, amount=int(investor2_tokens))
     
     # --------------------------------------------------------------------------
     # Investor 1 gets balance of token purchased
@@ -139,8 +139,11 @@ if __name__ == '__main__':
     # --------------------------------------------------------------------------
     # Distribute profits
     # --------------------------------------------------------------------------
+    
+    investor_list = [investor1_wallet, investor2_wallet]
+    investor_share_amount = [investor1_tokens, investor2_tokens]
 
-    # Add code here ...
+    DeployPaymentSplitterContract(investor_list, investor_share_amount, rent)
 
     
 

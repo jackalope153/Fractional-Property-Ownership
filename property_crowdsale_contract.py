@@ -1,9 +1,5 @@
 from base_contract import *
 
-PropertySaleDeployerContract = initContract(os.getenv('PROPERTY_SALE_DEPLOYER_CONTRACT_ADDRESS'), "./contracts/PropertySaleDeployer.json")
-PropertyCrowdsaleContract = initContract(os.getenv('PROPERTY_SALE_CONTRACT_ADDRESS'), "./contracts/Crowdsale.json")
-# PropertyCrowdsaleContract = initContract(get_token_sale_address(), "./contracts/Crowdsale.json")
-
 def get_token_address():
     txt_hash = PropertySaleDeployerContract.functions.token_address().call()
     return txt_hash
@@ -34,18 +30,17 @@ def payRent(transaction_info: dict):
     data = convertDataToJSON(transaction_info)
     transaction_info_URI = pinJSONtoIPFS(data)
 
-    tx_hash = PropertyCrowdsaleContract.functions.payRent(to_address, rent_amount).transact({
+    tx_hash = PropertyCrowdsaleContract.functions.pay_rent(to_address, rent_amount).transact({
         "from": from_address        
     })
     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
     return receipt 
 
-
 def DeployPaymentSplitterContract(list_of_address: list, list_of_tokens: list, income: int):
-    with open(Path("PaymentSplitterABI.json")) as json_file:
+    with open(Path("./contracts/PaymentSplitterABI.json")) as json_file:
         abi = json.load(json_file)
 
-    with open(Path("PaymentSplitterByte.json")) as json_file:
+    with open(Path("./contracts/PaymentSplitterByte.json")) as json_file:
         bytecode = json.load(json_file)
     
     BeginContract = w3.eth.contract(abi = abi, bytecode=bytecode)
@@ -61,3 +56,11 @@ def DeployPaymentSplitterContract(list_of_address: list, list_of_tokens: list, i
     
     return list_of_receipts
     
+def getETHBalance(address: str):
+	balance = w3.eth.getBalance(address)
+	ETH = balance/1000000000000000000
+	return ETH    
+
+PropertySaleDeployerContract = initContract(os.getenv('PROPERTY_SALE_DEPLOYER_CONTRACT_ADDRESS'), "./contracts/PropertySaleDeployer.json")
+# PropertyCrowdsaleContract = initContract(os.getenv('PROPERTY_SALE_CONTRACT_ADDRESS'), "./contracts/Crowdsale.json")
+PropertyCrowdsaleContract = initContract(get_token_sale_address(), "./contracts/Crowdsale.json")
